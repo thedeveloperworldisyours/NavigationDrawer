@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
 
     private CharSequence mTitleSection;
-    private CharSequence mTitleApp;
     private Fragment mFragment = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerRelativeLayout = (RelativeLayout) findViewById(R.id.left_drawer);
         mDrawerList = (ListView) findViewById(R.id.list_view_drawer);
-        mDrawerList.setAdapter(new ArrayAdapter<String>(getSupportActionBar()
+        mDrawerList.setAdapter(new ArrayAdapter<>(getSupportActionBar()
                 .getThemedContext(), android.R.layout.simple_list_item_1,
                 mOptionMenu));
         initContentWithFirstFragment();
@@ -50,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
-
 
                 switch (position) {
                     case 0:
@@ -80,12 +77,8 @@ public class MainActivity extends AppCompatActivity {
         });
         mDrawerList.setItemChecked(0, true);
         mTitleSection = getString(R.string.first_fragment);
-        mTitleApp = getTitle();
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close){
-//                new ActionBarDrawerToggle(this, mDrawerLayout,
-//                R.drawable.ic_drawer, R.string.drawer_open,
-//                R.string.drawer_close) {
 
             public void onDrawerClosed(View view) {
                 getSupportActionBar().setTitle(mTitleSection);
@@ -98,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
